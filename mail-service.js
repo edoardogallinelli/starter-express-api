@@ -25,6 +25,7 @@ async function serviceMail(data) {
       cc: ['edoardogallinelli@gmail.com', 'edoardogallinelli.job@gmail.com'],
       subject: "Richiesta di acquisto Dominio",
       text: `Ecco i dettagli: 
+            l'utente scrive dal sito: ${data.fromUrl}
             nome: ${data.recapiti.name} ,
             cognome: ${data.recapiti.lastName} ,
             Telefono: ${data.recapiti.phone} ,
