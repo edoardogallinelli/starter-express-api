@@ -1,28 +1,28 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-function serviceMail(data) {
+async function serviceMail(data) {
 
   console.log('chiamato service send mail');
 
-  return new Promise((resolve, reject) => {
 
-    const transporter = nodemailer.createTransport({
-      service: "Gmail",
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.MAIL,
-        pass: process.env.APP_PSW,
-      },
-    });
 
-    const mailOptions = {
-      from: process.env.MAIL,
-      to: "gallinelliroma@gmail.com",
-      cc: ['edoardogallinelli@gmail.com', 'edoardogallinelli.job@gmail.com'],
-      subject: "Richiesta di acquisto Dominio",
-      text: `Ecco i dettagli: 
+  const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.MAIL,
+      pass: process.env.APP_PSW,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.MAIL,
+    to: "gallinelliroma@gmail.com",
+    cc: ['edoardogallinelli@gmail.com', 'edoardogallinelli.job@gmail.com'],
+    subject: "Richiesta di acquisto Dominio",
+    text: `Ecco i dettagli: 
           nome: ${data.recapiti.name} ,
           cognome: ${data.recapiti.lastName} ,
           Telefono: ${data.recapiti.phone} ,
@@ -32,10 +32,10 @@ function serviceMail(data) {
 
           N.B.: ricordati di rispondere il prima prossibile.
    `
-    };
-    console.log(mailOptions, 'options')
-    let resp = false;
+  };
+  console.log(mailOptions, 'options')
 
+  await new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log("error is " + error);
