@@ -6,8 +6,8 @@ function serviceMail(data) {
     host: "smtp-relay.sendinblue.com",
     port: 587,
     auth: {
-      user: "edoardogallinelli.job@gmail.com",
-      pass: "xsmtpsib-d92d1e91b4ee1c7470a4eb8e3f16eb658da430f14fb0ca627f44392a73e3210e-8xknUTBvGSPOcjWt",
+      user: process.env.USER,
+      pass: process.env.KEY,
     },
     debug: false,
     logger: true,
