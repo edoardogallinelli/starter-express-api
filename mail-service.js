@@ -3,8 +3,8 @@ require("dotenv").config();
 function serviceMail(data) {
   console.log("chiamato");
   const transporter = nodemailer.createTransport({
-    host: "smtp-relay.sendinblue.com",
-    port: 587,
+    host: process.env.SMTP_HOST || 'smtp-relay.brevo.com',
+    port: process.env.SMTP_PORT || 587,
     auth: {
       user: process.env.USER,
       pass: process.env.KEY,
