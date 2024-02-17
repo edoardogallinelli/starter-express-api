@@ -32,14 +32,23 @@ function serviceMail(data) {
    `
   };
   console.log(mailOptions, 'options')
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email: ", error);
-    } else {
-      console.log("Email sent: ", info.response);
-    }
-  });
+  // transporter.sendMail(mailOptions, (error, info) => {
+  //   if (error) {
+  //     console.error("Error sending email: ", error);
+  //   } else {
+      
+  //   }
+  // });
 
+  new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+              reject(error)
+          } else {
+            console.log("Email sent: ", info.response);
+          }
+      });
+})
   transporter.verify().then(console.log).catch(console.error);
 }
 module.exports = serviceMail;
