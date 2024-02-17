@@ -596,7 +596,7 @@ app.get("/available-domains", (req, res) => {
  */
 app.post("/send-mail", async (req, res) => {
   const body = req.body
-  serviceMail(body)
+  await serviceMail(body)
   res.send({ messaggio: 'Dati inviati con successo' });
 });
 
